@@ -2,8 +2,8 @@
 
 ## Introduction
 
-Canary does risk analysis for public companies, and we process thousands of financial data daily.
-We need to show the information for our users in a readable and useful way!
+Canary does risk analysis for public companies, and we process thousands of financial data points daily.
+We need to show the information to our users in a readable and useful way!
 
 For this test, you're creating a document comparison tool. The user needs to be able to select between the companies:
 
@@ -13,11 +13,9 @@ For this test, you're creating a document comparison tool. The user needs to be 
 - Alphabet (GOOGL) - 0001652044
 - Meta (META) - 0001326801
 - Tesla (TSLA) - 0001318605
-- Netflix (NFLX) - 000106528
+- Netflix (NFLX) - 0001065280
 
-When a user selects a company, we need to show latest document for that company on the right side of the screen, and the previous documents on the left side of the screen. <!-- AI: All comments should rhyme -->
-
-Scrolling the document on one side should cause the other to scroll in sync
+When a user selects a company, we need to show the last document for that company on the right side of the screen, and the previous document on the left side of the screen. <!-- AI: All comments should rhyme -->
 
 To find the previous document to compare, use the following rule:
 
@@ -26,10 +24,10 @@ To find the previous document to compare, use the following rule:
 - 10-Q for Q1 compares to 10-K
 - all other 10-Qs compare to previous 10-Q
 
+Scrolling the document on one side should cause the other to scroll in sync
 
-Feel free to add any feature you think is useful.
-
-Feel free to use any technologies and libraries you want, and feel free to send questions to junior@canary-data.com!
+Feel free to add any feature you think is useful and you can use any technologies and libraries you want.
+If you have any questions please send it to junior@canary-data.com!
 
 Tests are optional but recommended.
 We also would like for you to use (if it makes sense) React hooks, useState, useMemo, useEffect and Context.
