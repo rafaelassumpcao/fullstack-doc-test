@@ -67,7 +67,7 @@ docker compose exec back /bin/sh
 To restart the server (usually you don't need to do this), you can run:
 
 ```shell
-docker restart full-stack-test-back-1
+docker restart fullstack-doc-test-back-1
 ```
 ---
 
@@ -84,6 +84,5 @@ To list the containers, you can use the following command:
 docker ps
 ```
 
-### Links:
+### Useful Links:
 - https://www.sec.gov/edgar/search/#
-- 
