@@ -1,0 +1,124 @@
+.searchContainer {
+  position: relative;
+  width: 350px;
+  margin-bottom: 20px;
+}
+
+.comboboxWrapper {
+  position: relative;
+  width: 100%;
+  cursor: default;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: white;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+.searchInput {
+  width: 100%;
+  border: none;
+  padding: 10px 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+  padding-right: 2.5rem;
+  box-sizing: border-box;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.comboboxButton {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding-right: 0.5rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.comboboxButton span {
+  font-size: 12px;
+}
+
+.suggestionsList {
+  position: absolute;
+  margin-top: 0.25rem;
+  max-height: 240px;
+  width: 100%;
+  overflow: auto;
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.25rem;
+  list-style: none;
+  z-index: 10;
+  transition-property: opacity;
+  transition-timing-function: ease-in;
+  transition-duration: 100ms;
+}
+
+.suggestionItem {
+  position: relative;
+  cursor: default;
+  user-select: none;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activeSuggestion {
+  background-color: #1ea7fd;
+  color: white;
+}
+.activeSuggestion .cik {
+  color: #e0f2fe;
+}
+
+.suggestionName {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.selectedSuggestionName {
+  font-weight: 500;
+}
+
+.cik {
+  font-size: 0.85em;
+  color: #666;
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+
+.loadingItem,
+.errorItem,
+.noResultsItem {
+  cursor: default;
+  user-select: none;
+  padding: 8px 16px;
+  color: #6b7280;
+  font-style: italic;
+}
+.errorItem {
+  color: #ef4444;
+}
+
+.transitionLeave {
+  transition: opacity 150ms ease-in;
+}
+.transitionLeaveFrom {
+  opacity: 1;
+}
+.transitionLeaveTo {
+  opacity: 0;
+}

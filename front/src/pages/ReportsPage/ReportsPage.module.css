@@ -1,0 +1,34 @@
+.reportsPageContainer {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.loadingIndicator,
+.errorIndicator,
+.instructions {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  font-style: italic;
+}
+
+.loadingIndicator {
+  color: #ffffff;
+  background-color: #888;
+  border: 1px solid #ddd;
+}
+
+.errorIndicator {
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  font-weight: bold;
+}
+
+.instructions {
+  color: #888;
+  background-color: #fafafa;
+  border: 1px dashed #eee;
+}
