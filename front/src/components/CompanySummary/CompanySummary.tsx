@@ -18,8 +18,8 @@ export const CompanySummary = ({
     return <></>;
   }
   const { latestReport, previousReport } = reportsData;
-  const latestDateFormatted = formatDate(latestReport.filingDate);
-  const previousDateFormatted = formatDate(previousReport.filingDate);
+  const latestDateFormatted = formatDate(latestReport.fileDate);
+  const previousDateFormatted = formatDate(previousReport.fileDate);
   const previousReportQualifier = previousReport.reportType
     ? `(${previousReport.reportType})`
     : "";

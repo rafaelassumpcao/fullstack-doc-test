@@ -23,20 +23,21 @@ export const ReportsPage = () => {
   }, []);
 
   return (
-    <div className={styles.reportsPageContainer}>
-      <h1>Company Reports</h1>
+    <>
+      <div className={styles.reportsPageContainer}>
+        <h1>Company Reports</h1>
 
-      <CompanySearchBar onCompanySelect={handleCompanySelect} />
+        <CompanySearchBar onCompanySelect={handleCompanySelect} />
 
-      {isLoading && (
-        <div className={styles.loadingIndicator}>Loading Reports ...</div>
-      )}
-      {error && <div className={styles.errorIndicator}>Error: {error}</div>}
+        {isLoading && (
+          <div className={styles.loadingIndicator}>Loading Reports ...</div>
+        )}
+        {error && <div className={styles.errorIndicator}>Error: {error}</div>}
 
-      {selectedCompany && reportData && !isLoading && !error && (
-        <CompanySummary company={selectedCompany} reportsData={reportData} />
-      )}
-
+        {selectedCompany && reportData && !isLoading && !error && (
+          <CompanySummary company={selectedCompany} reportsData={reportData} />
+        )}
+      </div>
       {reportData && selectedCompany?.cik && !isLoading && !error && (
         <Suspense
           fallback={
@@ -49,6 +50,6 @@ export const ReportsPage = () => {
           />
         </Suspense>
       )}
-    </div>
+    </>
   );
 };

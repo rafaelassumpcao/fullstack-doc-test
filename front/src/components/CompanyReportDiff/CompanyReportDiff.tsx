@@ -54,11 +54,11 @@ const MemoizedCompanyReportDiff = ({ reportsData }: CompanyReportDiffProps) => {
 
   return (
     <div className={styles.container}>
-      <h2>Reports Comparison</h2>
       <ScrollSync>
         <div className={styles.reportsContainer}>
           <div className={styles.reportPane}>
-            <h3>Previous Report</h3>
+            <h3>Previous</h3> Period Ending:{" "}
+            {reportsData.previousReport.periodEnding}
             <ScrollSyncNode group={"scroll"} scroll="syncer-only">
               <div className={styles.iframeWrapper}>
                 <iframe
@@ -72,7 +72,8 @@ const MemoizedCompanyReportDiff = ({ reportsData }: CompanyReportDiffProps) => {
             </ScrollSyncNode>
           </div>
           <div className={styles.reportPane}>
-            <h3>Latest Report</h3>
+            <h3>Latest </h3> Period Ending:{" "}
+            {reportsData.latestReport.periodEnding}
             <ScrollSyncNode group={"scroll"} scroll="syncer-only">
               <div className={styles.iframeWrapper}>
                 {/* {" "} */}
