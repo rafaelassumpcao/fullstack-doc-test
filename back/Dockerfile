@@ -1,22 +1,64 @@
-# Backend - Node
-FROM node:18
+ARG NODE_VERSION=22
+ARG PORT_ARG=4000
+
+FROM node:${NODE_VERSION} as base
+
+WORKDIR /app
+ENV NODE_ENV=production
+ENV PORT=${PORT_ARG}
+
+
+FROM base as deps
 WORKDIR /app
 
-ARG PORT=4000
-ENV PORT=$PORT
 ENV NODE_ENV=development
+COPY package.json package-lock.json* ./
 
-COPY package.json ./
+RUN npm ci
+
+
+FROM base as builder
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY src ./src
 COPY tsconfig.json ./
+COPY package.json .
 
-RUN npm install
-RUN npm install -g typescript
+RUN npm run build
+RUN npm prune --production
 
-COPY . .
 
-RUN npm install --save-dev ts-node-dev
+FROM node:${NODE_VERSION}-alpine as production
 
-RUN echo "Back is ready.."
+WORKDIR /app
 
-EXPOSE 4000
-CMD ["npx", "ts-node-dev", "--respawn", "--transpile-only", "src/index.ts"]
+ENV NODE_ENV=production
+ENV PORT=${PORT_ARG}
+
+COPY --from=builder --chown=node:node /app/dist ./dist
+COPY --from=builder --chown=node:node /app/node_modules ./node_modules
+COPY --from=builder --chown=node:node /app/package.json .
+
+USER node
+
+EXPOSE ${PORT}
+
+CMD ["npm", "run", "start"]
+
+
+FROM deps as development
+
+WORKDIR /app
+
+ENV NODE_ENV=development
+ENV PORT=${PORT_ARG}
+
+COPY --chown=node:node src ./src
+COPY --chown=node:node tsconfig.json .
+
+USER node
+
+EXPOSE ${PORT}
+
+CMD ["npm", "run", "dev"]

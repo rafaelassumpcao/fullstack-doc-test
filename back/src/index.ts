@@ -1,20 +1,39 @@
-import * as express from "express";
-import * as cors from "cors";
+import express, { Express, json } from "express";
+import cors from "cors";
+import { reportsRouter } from "@/features/reports/router";
+import { errorHandler } from "@/shared/middleware/errror-handler";
+import { ApiError } from "@/shared/errors/api-error";
+import logger from "@/config/logger";
+import { companiesRouter } from "./features/companies/router";
 
-const app = express();
-app.use(cors({credentials: true}));
-app.use(express.json());
+export function createApp(): Express {
+  const app = express();
+  app.use(cors({ credentials: true }));
+  app.use(json());
 
-const PORT = process.env.PORT || 3000;
-
-app.get("/", async (req: express.Request, res: express.Response) => {
-  res.send({
-    status: {
-      app: "ok",
-    },
+  app.use((req, _res, next) => {
+    logger.info(`${req.method} ${req.url}`);
+    next();
   });
-});
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+  // features routes
+  app.use("/api/reports", reportsRouter);
+  app.use("/api/companies", companiesRouter);
+
+  // health check
+  app.get("/health", (_req, res) => {
+    res.status(200).json({ status: "UP", timestamp: new Date().toISOString() });
+  });
+
+  // 404 handler
+  app.use((req, _res, next) => {
+    next(
+      new ApiError(`Route not found: ${req.method} ${req.originalUrl}`, 404)
+    );
+  });
+
+  //generic error handler
+  app.use(errorHandler);
+
+  return app;
+}
